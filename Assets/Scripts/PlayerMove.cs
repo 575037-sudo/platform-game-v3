@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sr;
     public float speed = 5;
     bool isGrounded;
-    public LayerMask groundLayerMask;
+    public LayerMask jumpableLayerMask;
     bool result;
 
 
@@ -29,7 +29,8 @@ public class PlayerMove : MonoBehaviour
         isGrounded = false;
         sr = GetComponent<SpriteRenderer>();
 
-        groundLayerMask = LayerMask.GetMask("Ground"); //*****
+        jumpableLayerMask = LayerMask.GetMask("Jumpable"); //*****
+ 
     }
 
     // Update is called once per frame
@@ -65,7 +66,8 @@ public class PlayerMove : MonoBehaviour
 
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(transform.position + offset, Vector2.down, rayLength, groundLayerMask);
+        hit = Physics2D.Raycast(transform.position + offset, Vector2.down, rayLength, jumpableLayerMask);
+ 
 
         Color hitColor = Color.red;
 
@@ -108,7 +110,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (jumpAction.WasPressedThisFrame())
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 5f);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 6f);
             }
         }
     }
