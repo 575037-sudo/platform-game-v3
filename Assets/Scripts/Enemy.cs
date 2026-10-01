@@ -30,13 +30,13 @@ public class Enemy : MonoBehaviour
         isGroundedMiddle = RayCollisionCheck(0, 0);
         isGroundedRight = RayCollisionCheck(0.2f, 0);
         
-        if (/*isGroundedRight == false && (dirX>0) ||*/ target.transform.position.x == transform.position.x -3)
+        if (isGroundedRight == false && (dirX>0) || target.transform.position.x == transform.position.x -3)
         {
             dirX = -2;
 
          
         }
-        if (/*isGroundedLeft == false && (dirX < 0)|| */target.transform.position.x == transform.position.x +3)
+        if (isGroundedLeft == false && (dirX < 0)|| target.transform.position.x == transform.position.x +3)
         {
             dirX = +2;
 

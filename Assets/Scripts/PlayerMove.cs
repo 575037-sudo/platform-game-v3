@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
+    HelperScript helper;
     InputAction moveAction;
     InputAction jumpAction;
     InputAction crouchAction;
@@ -30,7 +31,7 @@ public class PlayerMove : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         jumpableLayerMask = LayerMask.GetMask("Jumpable"); //*****
- 
+        helper = gameObject.AddComponent<HelperScript>();
     }
 
     // Update is called once per frame
@@ -55,7 +56,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("Walk", false);
         }
         isGrounded = RayCollisionCheck(0, 0);
-        FlipSprite();
+        helper.FlipSprite();
     }
     public bool RayCollisionCheck(float xoffs, float yoffs)
     {
@@ -80,17 +81,7 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(transform.position + offset, Vector2.down * rayLength, hitColor);
         return hitSomething;
     }
-    void FlipSprite()
-    {
-        if (rb.linearVelocityX < -0.1f)
-        {
-            sr.flipX = false;
-        }
-        if (rb.linearVelocityX > 0.1f)
-        {
-            sr.flipX = true;
-        }
-    }
+    
     void Crouch()
     {
         if (crouchAction.WasPressedThisFrame())

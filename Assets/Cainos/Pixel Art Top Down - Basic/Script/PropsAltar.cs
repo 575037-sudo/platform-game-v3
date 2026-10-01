@@ -24,10 +24,7 @@ namespace Cainos.PixelArtTopDown_Basic
             targetColor.a = 1.0f;
         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            targetColor.a = 0.0f;
-        }
+
 
         private void Update()
         {
